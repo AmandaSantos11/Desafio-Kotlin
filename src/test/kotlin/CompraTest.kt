@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class CompraTest {
 
@@ -28,14 +29,16 @@ class CompraTest {
 
     @Test
     fun verificaSeLimpaOCarrinho(){
-        var carrinho = mutableMapOf<Int,MutableList<Produto>>()
-
+        val compra = Compra()
+        var carrinho = compra.getCarrinho()
         val listaXburger = mutableListOf(Produto(101,"X-burger",10.00,1,extra = Extra()))
         carrinho[101] = listaXburger
         val listaXsalada = mutableListOf(Produto(201,"X-salada",12.00,1,extra = Extra()))
         carrinho[201] = listaXsalada
 
         Compra.limparCarrinho()
+
+        assertTrue(carrinho.isEmpty())
     }
 
     @Test
